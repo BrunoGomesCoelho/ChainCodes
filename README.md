@@ -10,17 +10,17 @@ Cada um gera o javaDoc/testes/impressão do resultado do que implementar.
 [B] = Bruno, [G] = Gabriel
 D(k) = Dificuldade k
 
-- Main D(1)
+- Main D(1) [G]
 
-- Localizar o ponto inicial D(2)
+- Localizar o ponto inicial D(2) [B]
 
-- Achar a altura e largura D(3)
+- Achar a altura e largura D(3) [B]
 
-- Calcular o número de pontos da borda (algoritmo chain codes) D(3)
+- Calcular o número de pontos da borda (algoritmo chain codes) D(3) [B]
 
-- Tamanho da borda D(4)
+- Tamanho da borda D(4) [G]
 
 
 # Obs
 
-- Pontos iniciais: Círculo (23, 16); Elipse (39, 51);
+- Pontos iniciais: Círculo (23, 16); Elipse (39, 51); (eu tinha anotado 129, mas descobriremos qnd tiver pronto)
