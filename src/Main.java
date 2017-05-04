@@ -10,10 +10,10 @@ import java.io.File;
 public class Main {
 	static String arq1 = "circulo.png";
 	static String arq2 = "elipse.png";
+	static String arq3 = "vazio.png";
 
-
-	private static Raster readImage() {
-		File inFile = new File(arq2);
+	public static Raster readImage(String arquivo) {
+		File inFile = new File(arquivo);
 		BufferedImage imageTemp = null;
 		try {
 			imageTemp = ImageIO.read(inFile);
@@ -25,8 +25,8 @@ public class Main {
 		return imageTemp.getRaster();
 	}
 
-	public static void main(String[] args) {
-		Raster image = readImage();
+	public static void main(String[] args) throws Exception {
+		Raster image = readImage(arq1);
 		ProcessamentoImagem imagemProcessada = new ProcessamentoImagem(image);
 
 		// imagemProcessada.printImage();
@@ -34,15 +34,10 @@ public class Main {
 			int[] pontoInicial = imagemProcessada.getPontoInicial();
 			// invertemos pois guardamos as coordenas (y,x).
 			System.out.printf("%d %d\n", pontoInicial[1], pontoInicial[0]);
-		} catch (ProcessamentoImagemException e) {
+		} catch (Exception e) {
 			System.out.print(e);
 		}
 
-		try {
-			System.out.printf("Largura: %d, Altura: %d\n\n", imagemProcessada.getLargura(), imagemProcessada.getAltura());
-		} catch (ProcessamentoImagemException e) {
-			System.out.print(e);
-		}
+		System.out.printf("Largura: %d, Altura: %d\n\n", imagemProcessada.getLargura(), imagemProcessada.getAltura());
 	}
-
 }
