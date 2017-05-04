@@ -143,7 +143,6 @@ public class ProcessamentoImagem {
 			}
 		}
 		throw new Exception("Não existe um objeto na imagem!\n");
-		// TODO: Ainda não achei uma maneira de testar isso, pois não consigo criar uma imagem vazia (tudo branco).
 	}
 
 	/**

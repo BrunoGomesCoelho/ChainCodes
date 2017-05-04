@@ -11,6 +11,7 @@ import static org.junit.Assert.*;
  */
 public class ProcessamentoImagemTest {
 
+	private static String imagemVazia = "vazio.png";
 	private static ProcessamentoImagem test;
 	private static Raster image;
 
@@ -23,6 +24,12 @@ public class ProcessamentoImagemTest {
 	@Test
 	public void testProcessamentoImagem() {
 		ProcessamentoImagem temp = new ProcessamentoImagem(image, 140);
+	}
+
+	@Test(expected = Exception.class)
+	public void testGetPontoInicialException() throws Exception{
+		ProcessamentoImagem testVazio = new ProcessamentoImagem(Main.readImage(imagemVazia));
+		testVazio.getPontoInicial();
 	}
 
 	@Test

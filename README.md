@@ -12,11 +12,11 @@ D(k) = Dificuldade k
 
 - Main D(1) [G]
 
-- Localizar o ponto inicial D(2) [B]
+- Localizar o ponto inicial D(2) [B] FEITO
 
-- Achar a altura e largura D(3) [B]
+- Achar a altura e largura D(3) [B] FEITO 
 
-- Calcular o número de pontos da borda (algoritmo chain codes) D(3) [B]
+- Calcular o número de pontos da borda (algoritmo chain codes) D(3) [G]
 
 - Tamanho da borda D(4) [G]
 
