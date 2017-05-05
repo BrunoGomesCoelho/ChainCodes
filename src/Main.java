@@ -8,9 +8,7 @@ import java.awt.image.Raster;
 import java.io.File;
 
 public class Main {
-	static String arq1 = "circulo.png";
-	static String arq2 = "elipse.png";
-	static String arq3 = "vazio.png";
+	static String file = "";
 
 	public static Raster readImage(String arquivo) {
 		File inFile = new File(arquivo);
@@ -26,18 +24,25 @@ public class Main {
 	}
 
 	public static void main(String[] args) throws Exception {
-		Raster image = readImage(arq1);
+		
+		System.out.println("Digite o nome da imagem: ");
+		file = EntradaTeclado.leString();
+		
+		Raster image = readImage(file);
 		ProcessamentoImagem imagemProcessada = new ProcessamentoImagem(image);
 
 		// imagemProcessada.printImage();
 		try {
 			int[] pontoInicial = imagemProcessada.getPontoInicial();
 			// invertemos pois guardamos as coordenas (y,x).
-			System.out.printf("%d %d\n", pontoInicial[1], pontoInicial[0]);
+			System.out.printf("P0 = (%d, %d)\n", pontoInicial[1], pontoInicial[0]);
 		} catch (Exception e) {
 			System.out.print(e);
 		}
 
 		System.out.printf("Largura: %d, Altura: %d\n\n", imagemProcessada.getLargura(), imagemProcessada.getAltura());
+		//imagemProcessada.printImage();
+		System.out.printf("======== Dados da Borda ========\n");
+		System.out.println("Tamanho: " + imagemProcessada.tamBorda()  + " Pontos: " + imagemProcessada.pontosBorda());
 	}
 }
