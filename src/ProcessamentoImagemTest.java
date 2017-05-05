@@ -6,9 +6,6 @@ import java.awt.image.Raster;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by bruno on 03/05/17.
- */
 public class ProcessamentoImagemTest {
 
 	private static String imagemVazia = "vazio.png";
@@ -50,13 +47,17 @@ public class ProcessamentoImagemTest {
 		test.getAltura();
 	}
 
+	// usando a imagem circulo.png como teste
 	@Test
 	public void testPontosBorda() throws Exception {
+		assertEquals(test.pontosBorda(), 52);
 		test.pontosBorda();
 	}
-
+	
+	// usando a imagem circulo.png como teste
 	@Test
 	public void testTamBorda() throws Exception {
+		assertEquals((int)test.tamBorda(), 61);
 		test.tamBorda();
 	}
 
