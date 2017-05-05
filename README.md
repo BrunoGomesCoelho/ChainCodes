@@ -23,4 +23,22 @@ D(k) = Dificuldade k
 
 # Obs
 
-- Pontos iniciais: Círculo (23, 16); Elipse (39, 51); (eu tinha anotado 129, mas descobriremos qnd tiver pronto)
+Dados do círculo e da elipse, respectivamente (retirados do grupo do BCC no face)
+
+Início: 23.0 16.0
+
+Largura: 20
+
+Altura: 20
+
+Número de pontos na borda: 52
+
+
+
+Início: 139.0 51.0
+
+Largura: 196
+
+Altura: 61
+
+Número de pontos na borda: 407
