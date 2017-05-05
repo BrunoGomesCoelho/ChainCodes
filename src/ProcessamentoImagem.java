@@ -16,20 +16,7 @@ public class ProcessamentoImagem {
 	private int largura = naoCalculado;
 	private int altura = naoCalculado;
 	private int numPontosBorda = naoCalculado;
-	private int tamBorda = naoCalculado;
-
-
-
-	// TODO: Deletar essa função antes de enviar, só para debuggar
-	public void printImage() {
-		for (int i = 0; i < image.getHeight(); i++) {
-			for (int j = 0; j < image.getWidth(); j++) {
-				System.out.printf("%d ", image.getSample(j, i, colorChannel));
-			}
-			System.out.printf("\n");
-		}
-	}
-
+	public double tamBord = naoCalculado;
 
 	public ProcessamentoImagem(Raster image) {
 		this.image = image;
@@ -149,8 +136,51 @@ public class ProcessamentoImagem {
 	 * Retorna quantos ponto existem na borda do objeto
 	 * @return Quantos pontos existem
 	 */
-	public int pontosBorda() {
-		return 0;
+	public int pontosBorda() throws Exception {
+		int p0[] =  this.calculaPontoInicial();
+		boolean visited[][] = new boolean[image.getHeight()][image.getWidth()];
+		int im[][] = new int[image.getHeight()][image.getWidth()];
+		int cols = p0[1], rows = p0[0];
+		int orientation = 4, a = 0;
+		int ni[] = { 0, -1, -1, -1, 0, +1, 1, +1}; // o que adicionar a i ou j dado a orientacao atual
+		int nj[] = {-1, -1,  0, +1, 1, +1, 0, -1};
+		
+		// inicializando vetor de visitados
+		for(int i = 0; i < image.getHeight(); i++) {
+			for(int j = 0; j < image.getWidth(); j++) {
+				visited[i][j] = false;
+				if(image.getSample(j, i, colorChannel) != white) im[i][j] = 1;
+				else im[i][j] = 0;
+			}
+		}
+
+		int i = rows, j = cols;
+		
+		numPontosBorda = 0;
+
+		while(!visited[i][j]) {
+			numPontosBorda++;
+			visited[i][j] = true;
+			for(int k = orientation; k != (7+orientation)%8; k = (k+1)%8) { // orientacao relativa à base
+				if(i+ni[k] == rows && j+nj[k] == cols && a == 0) { // só acaba quando passar pelo P0 DUAS vezes
+					a++;
+				} else if(i+ni[k] == rows && j+nj[k] == cols && a == 1) {
+					return numPontosBorda;
+				}
+				if(i+ni[k] >= 0 && i+ni[k] < image.getHeight() && j+nj[k] >= 0 && j+nj[k] < image.getWidth()) { // para nao extrapolar a matriz
+					if(im[i+ni[k]][j+nj[k]] == 1 && !visited[i+ni[k]][j+nj[k]]) {
+						i += ni[k];
+						j += nj[k];
+						
+						// atualizando orientacao do referencial
+						orientation = (4 + k)%8;
+						break;
+					}
+				}
+			}
+		}
+		
+		return numPontosBorda;
 	}
 
 	/**
@@ -158,8 +188,54 @@ public class ProcessamentoImagem {
 	 * calculado como a soma das distâncias de dois pontos consecutivos da borda.
 	 * @return O tamanho da borda
 	 */
-	public double tamBorda() {
-		return 0.1;
+	public double tamBorda() throws Exception {
+		int p0[] =  this.calculaPontoInicial();
+		boolean visited[][] = new boolean[image.getHeight()][image.getWidth()];
+		int im[][] = new int[image.getHeight()][image.getWidth()];
+		int cols = p0[1], rows = p0[0];
+		int orientation = 4, a = 0;
+		int ni[] = { 0, -1, -1, -1, 0, +1, 1, +1};
+		int nj[] = {-1, -1,  0, +1, 1, +1, 0, -1};
+		
+		// inicializando vetor de visitados
+		for(int i = 0; i < image.getHeight(); i++) {
+			for(int j = 0; j < image.getWidth(); j++) {
+				visited[i][j] = false;
+				if(image.getSample(j, i, colorChannel) != white) im[i][j] = 1;
+				else im[i][j] = 0;
+			}
+		}
+
+		int i = rows, j = cols;
+		
+		tamBord = 1;
+
+		while(!visited[i][j]) {
+			visited[i][j] = true;
+			for(int k = orientation; k != (7+orientation)%8; k = (k+1)%8) { // orientacao relativa à base
+				if(i+ni[k] == rows && j+nj[k] == cols && a == 0) { // ver se é a primeira vez em que se passa pelo P0
+					a++;
+				} else if(i+ni[k] == rows && j+nj[k] == cols && a == 1) {
+					return tamBord;
+				}
+				if(i+ni[k] >= 0 && i+ni[k] < image.getHeight() && j+nj[k] >= 0 && j+nj[k] < image.getWidth()) { // para nao extrapolar a matriz
+					if(im[i+ni[k]][j+nj[k]] == 1 && !visited[i+ni[k]][j+nj[k]]) {
+						i += ni[k];
+						j += nj[k];
+						if(k%2 != 0) {
+							tamBord += Math.sqrt(2);
+						}
+						else tamBord += 1;
+						
+						// atualizando orientacao do referencial
+						orientation = (4 + k)%8;
+						break;
+					}
+				}
+			}
+		}
+		
+		return tamBord;
 	}
 
 
