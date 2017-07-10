@@ -1,44 +1,39 @@
-# ChainCodes
-Implementação do algoritmo chain codes em Java para imagens em greyscale.
+# Chain Codes
+> Implementation of the chain codes algorithm in java 8.
 
-# Recados
-Usar utf-8 pelo amor de tudo que é santo.
+A small project for detecting the boundaries of simples shapes in black and white grayscales images. Implemented in Java 8.
 
-Cada um gera o javaDoc/testes/impressão do resultado do que implementar.
+## Installing / Getting started
 
-# Divisão
-[B] = Bruno, [G] = Gabriel
-D(k) = Dificuldade k
+All that is needed is the standart java 8 oracle package. The program can be run by using:
 
-- Main D(1) [G] FEITO
+```shell
+java ChainCodes -jar
+```
 
-- Localizar o ponto inicial D(2) [B] FEITO
+When this happens, the program will run the border dectection on the image specified in the source code. Sample images are included and run by default.
 
-- Achar a altura e largura D(3) [B] FEITO 
+## Developing
 
-- Calcular o número de pontos da borda (algoritmo chain codes) D(3) [G] FETIO
+To partake in the project, just clone it and modify the source code, the send a pull request.
 
-- Tamanho da borda D(4) [G] FEITO
+```shell
+git clone https://github.com/BrunoGomesCoelho/ChainCodes.git
+cd ChainCodes
+```
+## Features
 
+* Finds the border of any shape in black and white images.
+* Calculates the maximum height and width of the shape
+* Also calculates the perimeter of the shape.
 
-# Obs
+## Contributing
 
-Dados do círculo e da elipse, respectivamente (retirados do grupo do BCC no facebook)
-
-Início: 23.0 16.0
-
-Largura: 20
-
-Altura: 20
-
-Número de pontos na borda: 52
-
+If you'd like to contribute, please fork the repository and use a feature
+branch. Pull requests are warmly welcome, especially when followed up with a JUnit class that tests the new code extensively.
 
 
-Início: 139.0 51.0
+## Licensing
 
-Largura: 196
+The code in this project is licensed under MIT license.
 
-Altura: 61
-
-Número de pontos na borda: 407
